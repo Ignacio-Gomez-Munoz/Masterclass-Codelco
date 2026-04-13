@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuartos Espacios en la Minería del Futuro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cobre: #b5622a;
+    --cobre-claro: #d4885a;
+    --cobre-oscuro: #7a3f18;
+    --cobre-tenue: #2a1a0e;
+    --mineral: #0e1214;
+    --roca: #1c2226;
+    --pizarra: #2c3438;
+    --gris-frio: #8a9499;
+    --linea-oscura: rgba(255,255,255,0.08);
+    --linea-media: rgba(255,255,255,0.14);
+    --blanco: #f5f2ee;
+    --blanco-suave: rgba(245,242,238,0.85);
+    --blanco-muted: rgba(245,242,238,0.45);
+    --blanco-ghost: rgba(245,242,238,0.18);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--mineral);
+    color: var(--blanco);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PORTADA ── */
+  .portada {
+    min-height: 100vh;
+    background: var(--mineral);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Capas geológicas decorativas */
+  .geo-layer {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .geo-1 {
+    bottom: -20px; left: -20px;
+    width: 55%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--cobre), transparent);
+    opacity: 0.4;
+  }
+
+  .geo-2 {
+    bottom: 60px; left: -20px;
+    width: 35%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cobre-claro), transparent);
+    opacity: 0.2;
+  }
+
+  .geo-3 {
+    bottom: 100px; left: -20px;
+    width: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blanco), transparent);
+    opacity: 0.06;
+  }
+
+  /* Cuadrícula de fondo */
+  .portada-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--linea-oscura) 1px, transparent 1px),
+      linear-gradient(90deg, var(--linea-oscura) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  /* Número grande */
+  .portada-num-bg {
+    position: absolute;
+    right: 40px; bottom: -30px;
+    font-family: var(--serif);
+    font-size: clamp(200px, 30vw, 360px);
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(255,255,255,0.025);
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+
+  .portada-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .portada-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cobre);
+  }
+
+  .portada-año {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--blanco-ghost);
+  }
+
+  .portada-centro {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 40px;
+    max-width: 780px;
+  }
+
+  .portada h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--blanco);
+    margin-bottom: 32px;
+  }
+
+  .portada h1 span {
+    display: block;
+    color: var(--cobre-claro);
+    font-style: italic;
+  }
+
+  .portada-bajada {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--blanco-muted);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  .portada-bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .portada-para {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blanco-ghost);
+    font-weight: 500;
+  }
+
+  .portada-para strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--blanco-suave);
+    margin-top: 4px;
+    text-transform: none;
+  }
+
+  .portada-scroll {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-barra {
+    width: 36px;
+    height: 1px;
+    background: var(--blanco-ghost);
+  }
+
+  .scroll-txt {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blanco-ghost);
+    font-weight: 500;
+  }
+
+  /* ── DECLARACIÓN CENTRAL ── */
+  .declaracion {
+    background: var(--roca);
+    padding: 80px 52px;
+    border-bottom: 1px solid var(--linea-oscura);
+  }
+
+  .decl-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .decl-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cobre);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .decl-texto {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--blanco);
+    letter-spacing: -0.01em;
+  }
+
+  .decl-texto em {
+    font-style: italic;
+    color: var(--cobre-claro);
+  }
+
+  /* ── CONTENIDO PRINCIPAL ── */
+  .contenido {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── SECCIONES ── */
+  .seccion {
+    padding: 72px 52px;
+    border-bottom: 1px solid var(--linea-oscura);
+    opacity: 0;
+    animation: subir 0.7s ease forwards;
+  }
+
+  .seccion:nth-child(1) { animation-delay: 0.1s; }
+  .seccion:nth-child(2) { animation-delay: 0.2s; }
+  .seccion:nth-child(3) { animation-delay: 0.3s; }
+  .seccion:nth-child(4) { animation-delay: 0.4s; }
+  .seccion:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes subir {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .sec-header {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 20px;
+    margin-bottom: 36px;
+    align-items: start;
+  }
+
+  .sec-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--pizarra);
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  .sec-titulo {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--blanco);
+    letter-spacing: -0.01em;
+  }
+
+  .sec-body {
+    padding-left: 68px;
+  }
+
+  .sec-body p {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--blanco-muted);
+    line-height: 1.8;
+    margin-bottom: 18px;
+    max-width: 640px;
+  }
+
+  .sec-body p:last-child { margin-bottom: 0; }
+
+  .sec-body strong {
+    color: var(--blanco-suave);
+    font-weight: 400;
+  }
+
+  /* ── TABLA DE FUERZAS ── */
+  .fuerzas {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .fuerza {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    padding: 24px 0;
+    border-top: 1px solid var(--linea-oscura);
+    transition: background 0.2s;
+  }
+
+  .fuerza:last-child { border-bottom: 1px solid var(--linea-oscura); }
+
+  .fuerza-año {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cobre);
+    letter-spacing: 0.06em;
+    padding-top: 3px;
+  }
+
+  .fuerza-body h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blanco-suave);
+    margin-bottom: 6px;
+  }
+
+  .fuerza-body p {
+    font-size: 13.5px;
+    color: rgba(245,242,238,0.38);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  /* ── TRES BRECHAS ── */
+  .brechas {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .brecha {
+    background: var(--roca);
+    border: 1px solid var(--linea-oscura);
+    border-left: 3px solid var(--cobre-oscuro);
+    border-radius: 0 10px 10px 0;
+    padding: 24px 26px;
+    transition: border-left-color 0.25s, border-color 0.25s;
+  }
+
+  .brecha:hover {
+    border-left-color: var(--cobre);
+    border-color: var(--linea-media);
+  }
+
+  .brecha h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blanco-suave);
+    margin-bottom: 8px;
+  }
+
+  .brecha p {
+    font-size: 13.5px;
+    color: rgba(245,242,238,0.42);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  /* ── COMPARATIVA ── */
+  .comparativa {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--linea-oscura);
+    border: 1px solid var(--linea-oscura);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .comp-col {
+    background: var(--roca);
+    padding: 28px 26px;
+  }
+
+  .comp-col.cobre-col {
+    background: var(--cobre-tenue);
+  }
+
+  .comp-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gris-frio);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .comp-col.cobre-col .comp-label {
+    color: var(--cobre-claro);
+  }
+
+  .comp-fila {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--linea-oscura);
+  }
+
+  .comp-fila:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .comp-dim {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(245,242,238,0.2);
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .comp-valor {
+    font-size: 13.5px;
+    color: rgba(245,242,238,0.45);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .comp-col.cobre-col .comp-valor {
+    color: var(--blanco-suave);
+  }
+
+  /* ── CALLOUT GRANDE ── */
+  .callout-grande {
+    background: var(--cobre-oscuro);
+    border-radius: 12px;
+    padding: 40px 44px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .callout-grande::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 24px;
+    font-family: var(--serif);
+    font-size: 160px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .callout-grande p {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    color: var(--blanco);
+    line-height: 1.45;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  .callout-grande .cg-autor {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── CUARTOS ESPACIOS APLICADOS ── */
+  .aplicados {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .aplic {
+    background: var(--roca);
+    border: 1px solid var(--linea-oscura);
+    border-radius: 10px;
+    padding: 24px 22px;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+
+  .aplic:hover {
+    border-color: var(--linea-media);
+    transform: translateY(-2px);
+  }
+
+  .aplic-icono {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--pizarra);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .aplic-icono svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--cobre);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .aplic h4 {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--blanco-suave);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+
+  .aplic p {
+    font-size: 13px;
+    color: rgba(245,242,238,0.38);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  /* ── CASOS ── */
+  .casos {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .caso {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--linea-oscura);
+    align-items: start;
+  }
+
+  .caso:last-child { border-bottom: 1px solid var(--linea-oscura); }
+
+  .caso-empresa {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--blanco-suave);
+    line-height: 1.3;
+  }
+
+  .caso-sector {
+    display: block;
+    font-size: 11px;
+    color: var(--cobre);
+    font-weight: 400;
+    margin-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .caso p {
+    font-size: 13.5px;
+    color: rgba(245,242,238,0.42);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  /* ── PREGUNTA FINAL ── */
+  .pregunta {
+    background: var(--pizarra);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-top: 36px;
+  }
+
+  .pregunta p {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 400;
+    color: var(--blanco-suave);
+    line-height: 1.45;
+    margin-bottom: 0;
+    max-width: 100%;
+  }
+
+  .pregunta p em {
+    font-style: italic;
+    color: var(--cobre-claro);
+  }
+
+  /* ── CIERRE ── */
+  .cierre {
+    background: var(--roca);
+    border-top: 1px solid var(--linea-oscura);
+    padding: 72px 52px 80px;
+  }
+
+  .cierre-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cierre-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cobre);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .cierre h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--blanco);
+    letter-spacing: -0.01em;
+    max-width: 540px;
+    margin-bottom: 16px;
+  }
+
+  .cierre-txt {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--blanco-muted);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 44px;
+  }
+
+  .contacto-bloque {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+
+  .contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .contacto-icono {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--pizarra);
+    border: 1px solid var(--linea-oscura);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contacto-icono svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--cobre);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .c-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(245,242,238,0.22);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .c-valor {
+    font-size: 15px;
+    color: var(--blanco-suave);
+    font-weight: 400;
+  }
+
+  .c-valor a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--linea-oscura);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+
+  .c-valor a:hover { border-color: var(--cobre); }
+
+  .firma {
+    padding-top: 32px;
+    border-top: 1px solid var(--linea-oscura);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .firma-nombre {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blanco-suave);
+  }
+
+  .firma-rol {
+    font-size: 12px;
+    color: rgba(245,242,238,0.3);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  .pq-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cobre);
+    border: 1px solid var(--cobre-oscuro);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .portada { padding: 32px 24px; }
+    .portada-num-bg { display: none; }
+    .declaracion { padding: 56px 24px; }
+    .seccion { padding: 52px 24px; }
+    .sec-header { grid-template-columns: 1fr; }
+    .sec-n { display: none; }
+    .sec-body { padding-left: 0; }
+    .comparativa { grid-template-columns: 1fr; }
+    .aplicados { grid-template-columns: 1fr; }
+    .caso { grid-template-columns: 1fr; gap: 6px; }
+    .cierre { padding: 52px 24px 60px; }
+    .callout-grande { padding: 28px 24px; }
+    .callout-grande::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<header class="portada">
+  <div class="portada-grid"></div>
+  <div class="geo-layer geo-1"></div>
+  <div class="geo-layer geo-2"></div>
+  <div class="geo-layer geo-3"></div>
+  <div class="portada-num-bg">4</div>
+
+  <div class="portada-top">
+    <span class="portada-tag">Apuntes de Masterclass · IE University</span>
+    <span class="portada-año">2025–2026</span>
+  </div>
+
+  <div class="portada-centro">
+    <h1>
+      Cuando la tecnología llega<br>
+      <span>antes que la cultura</span>
+    </h1>
+    <p class="portada-bajada">Una mirada sobre por qué las organizaciones que atraviesan transformaciones aceleradas necesitan más que procesos e infraestructura — y cómo los Cuartos Espacios responden a ese desafío.</p>
+  </div>
+
+  <div class="portada-bottom">
+    <div class="portada-para">
+      Preparado para
+      <strong>Camila Medel &amp; Héctor Larraín · Codelco</strong>
+    </div>
+    <div class="portada-scroll">
+      <div class="scroll-barra"></div>
+      <span class="scroll-txt">Continúa</span>
+    </div>
+  </div>
+</header>
+
+<!-- DECLARACIÓN CENTRAL -->
+<div class="declaracion">
+  <div class="decl-inner">
+    <span class="decl-label">La pregunta de fondo</span>
+    <p class="decl-texto">
+      Las organizaciones que más invierten en tecnología rara vez fallan por razones técnicas.<br>
+      Fallan porque <em>la cultura no se mueve a la misma velocidad que los sistemas</em>.
+    </p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="contenido">
+
+  <!-- SECCIÓN 1 -->
+  <section class="seccion">
+    <div class="sec-header">
+      <span class="sec-n">01</span>
+      <h2 class="sec-titulo">Las fuerzas que están redefiniendo los espacios de trabajo</h2>
+    </div>
+    <div class="sec-body">
+      <p>En la última década, cinco transformaciones cambiaron de forma irreversible la relación entre las personas y los entornos donde trabajan. Comprender estas fuerzas es el punto de partida para anticipar los desafíos que enfrentan hoy las organizaciones que operan a gran escala.</p>
+
+      <div class="fuerzas">
+        <div class="fuerza">
+          <span class="fuerza-año">2008–2010</span>
+          <div class="fuerza-body">
+            <h4>La hospitalidad entra al trabajo</h4>
+            <p>Airbnb y WeWork cambiaron el paradigma: habitar el espacio de otro y compartir espacio con otros se volvieron modelos productivos. El lugar de trabajo dejó de ser un contenedor funcional y pasó a ser un entorno que genera — o destruye — sentido de pertenencia.</p>
+          </div>
+        </div>
+        <div class="fuerza">
+          <span class="fuerza-año">2020</span>
+          <div class="fuerza-body">
+            <h4>El espacio físico se vuelve opcional</h4>
+            <p>La pandemia demostró que la productividad no depende de un lugar centralizado. Las organizaciones que sobrevivieron bien no fueron las que mejor controlaron la presencia — fueron las que lograron mantener cohesión cultural a distancia.</p>
+          </div>
+        </div>
+        <div class="fuerza">
+          <span class="fuerza-año">Hoy</span>
+          <div class="fuerza-body">
+            <h4>Cinco generaciones, un mismo equipo</h4>
+            <p>Por primera vez en la historia, cinco generaciones conviven simultáneamente en los mismos espacios de trabajo. Cada una tiene una relación distinta con la autoridad, la tecnología y el propósito. Gestionar esa coexistencia sin generar silos es uno de los desafíos más complejos del desarrollo organizacional actual.</p>
+          </div>
+        </div>
+        <div class="fuerza">
+          <span class="fuerza-año">Ahora</span>
+          <div class="fuerza-body">
+            <h4>La epidemia invisible: el aislamiento en organizaciones masivas</h4>
+            <p>La soledad no es solo un fenómeno social. Es un riesgo organizacional. Las instituciones de gran escala — con miles de personas distribuidas en múltiples sedes o faenas — enfrentan el riesgo de que las personas pertenezcan formalmente a la organización, pero no sientan que forman parte de ella.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2 -->
+  <section class="seccion">
+    <div class="sec-header">
+      <span class="sec-n">02</span>
+      <h2 class="sec-titulo">La fricción que nadie mide — y que todos sienten</h2>
+    </div>
+    <div class="sec-body">
+      <p>Cuando una organización implementa un cambio tecnológico o estructural de gran envergadura, el foco suele estar en el sistema: los plazos, los costos, la integración técnica. Pero la mayoría de los retrasos y sobre-costos en procesos de transformación no tienen origen técnico.</p>
+      <p>Tienen origen humano. Y específicamente, ocurren en la brecha entre <strong>lo que la organización implementa</strong> y <strong>lo que las personas adoptan</strong>.</p>
+
+      <div class="brechas">
+        <div class="brecha">
+          <h4>La brecha de adopción</h4>
+          <p>Los sistemas llegan. Los procesos cambian. Pero los hábitos operativos de quienes deben ejecutarlos siguen anclados en la lógica anterior. Esta resistencia rara vez es explícita — se manifiesta como lentitud, errores recurrentes o cumplimiento formal sin apropiación real.</p>
+        </div>
+        <div class="brecha">
+          <h4>La brecha de legitimidad</h4>
+          <p>Los cambios de gran envergadura necesitan líderes que los encuadren con sentido. Cuando los mandos medios no comprenden el "por qué" detrás de la transformación — o no confían en él — se convierten involuntariamente en cuellos de botella. No por mala intención, sino porque nadie construyó el puente entre la estrategia y su rol concreto.</p>
+        </div>
+        <div class="brecha">
+          <h4>La brecha de memoria</h4>
+          <p>Las organizaciones acumulan conocimiento tácito durante años. Cuando hay rotación ejecutiva acelerada o reorganizaciones profundas, ese conocimiento desaparece junto con las personas que lo portaban. Reconstruirlo tiene un costo que raramente figura en los balances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3 -->
+  <section class="seccion">
+    <div class="sec-header">
+      <span class="sec-n">03</span>
+      <h2 class="sec-titulo">De la Economía de la Experiencia a la Economía de la Pertenencia</h2>
+    </div>
+    <div class="sec-body">
+      <p>El concepto de <strong>Cuartos Espacios</strong>, desarrollado en la intersección del diseño organizacional y la sociología del trabajo, plantea una distinción que tiene consecuencias directas en cómo se diseñan los procesos de transformación.</p>
+
+      <div class="comparativa">
+        <div class="comp-col">
+          <span class="comp-label">Lo que ya no alcanza</span>
+          <div class="comp-fila">
+            <div class="comp-dim">Centro</div>
+            <div class="comp-valor">El individuo y su rendimiento</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Motor</div>
+            <div class="comp-valor">La instrucción y el control</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Recurso</div>
+            <div class="comp-valor">El cumplimiento formal</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Diseño</div>
+            <div class="comp-valor">Impuesto desde la dirección</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Métrica</div>
+            <div class="comp-valor">¿Cumplió?</div>
+          </div>
+        </div>
+        <div class="comp-col cobre-col">
+          <span class="comp-label">Lo que diferencia</span>
+          <div class="comp-fila">
+            <div class="comp-dim">Centro</div>
+            <div class="comp-valor">La relación y el cuidado mutuo</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Motor</div>
+            <div class="comp-valor">El propósito y la confianza</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Recurso</div>
+            <div class="comp-valor">La calidad del vínculo</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Diseño</div>
+            <div class="comp-valor">Cocreado con los equipos</div>
+          </div>
+          <div class="comp-fila">
+            <div class="comp-dim">Métrica</div>
+            <div class="comp-valor">¿Siente que pertenece?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-grande">
+        <p>"Sin recurrencia, no hay pertenencia. Un proceso de transformación que solo se visita una vez — por ambicioso que sea — no construye cultura."
+          <span class="cg-autor">Cristina · Masterclass IE University</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4 -->
+  <section class="seccion">
+    <div class="sec-header">
+      <span class="sec-n">04</span>
+      <h2 class="sec-titulo">Qué significa esto para organizaciones que operan a gran escala</h2>
+    </div>
+    <div class="sec-body">
+      <p>Las organizaciones industriales de gran escala — con operaciones distribuidas, miles de colaboradores y estructuras de mando complejas — enfrentan una versión amplificada de estos desafíos. El Cuarto Espacio no es una metáfora: es un modelo aplicable a cómo se diseñan los procesos de onboarding, la formación de mandos medios, la comunicación interna y la gestión del cambio.</p>
+
+      <div class="aplicados">
+        <div class="aplic">
+          <div class="aplic-icono">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Inducción como rito de pertenencia</h4>
+          <p>No un proceso de bienvenida informativo. Un primer contacto diseñado para que el colaborador ancle su propósito al de la organización antes de ejecutar su primera tarea.</p>
+        </div>
+        <div class="aplic">
+          <div class="aplic-icono">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4>Liderazgo en terreno con legitimidad real</h4>
+          <p>Los mandos medios que comprenden el "por qué" detrás de cada cambio no solo ejecutan mejor — construyen confianza hacia arriba y hacia abajo de la línea de mando.</p>
+        </div>
+        <div class="aplic">
+          <div class="aplic-icono">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h4>Memoria institucional diseñada</h4>
+          <p>Los ritos, narrativas y espacios de conversación que preservan el conocimiento tácito de la organización incluso cuando las personas rotan o los equipos se reorganizan.</p>
+        </div>
+        <div class="aplic">
+          <div class="aplic-icono">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h4>Adopción tecnológica con acompañamiento humano</h4>
+          <p>La tecnología se implementa. La cultura se construye. Las organizaciones que acompañan cada transformación digital con un proceso de apropiación humana reducen la fricción y aceleran el ROI real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5 -->
+  <section class="seccion">
+    <div class="sec-header">
+      <span class="sec-n">05</span>
+      <h2 class="sec-titulo">Lo que otras industrias ya están haciendo</h2>
+    </div>
+    <div class="sec-body">
+      <p>El principio de los Cuartos Espacios está siendo aplicado en sectores tan distintos como la banca, el retail, la hospitalidad y la salud. El patrón común es el mismo: las organizaciones que logran sostener su cultura durante transformaciones aceleradas lo hacen construyendo entornos donde las personas se sienten parte — no solo empleadas.</p>
+
+      <div class="casos">
+        <div class="caso">
+          <div>
+            <div class="caso-empresa">Santander Work Café</div>
+            <span class="caso-sector">Banca · Chile</span>
+          </div>
+          <p>Transformó sucursales bancarias en espacios de trabajo compartidos abiertos a la comunidad. Resultado: mayor tráfico, menor percepción de frialdad institucional y equipos con mayor sentido de propósito frente al cliente.</p>
+        </div>
+        <div class="caso">
+          <div>
+            <div class="caso-empresa">WeWork Industrial</div>
+            <span class="caso-sector">Espacios de trabajo · Global</span>
+          </div>
+          <p>Trasladó el concepto de hospitalidad al entorno laboral: barras de café, comunidad activa, programas de networking. Demostró que la cultura del espacio impacta directamente en la productividad y la retención.</p>
+        </div>
+        <div class="caso">
+          <div>
+            <div class="caso-empresa">Mall Plaza</div>
+            <span class="caso-sector">Retail · Chile</span>
+          </div>
+          <p>Evolucionó de centro de consumo a centro cívico, integrando servicios públicos y comunidad local. Un ejemplo de cómo una infraestructura puede rediseñar su propósito sin cambiar su estructura física.</p>
+        </div>
+        <div class="caso">
+          <div>
+            <div class="caso-empresa">Ace Hotel</div>
+            <span class="caso-sector">Hospitalidad · Los Ángeles</span>
+          </div>
+          <p>Integró artistas en residencia dentro del hotel, haciendo cohabitar a huéspedes con creadores activos. Demostró que cuando las personas se sienten parte de algo vivo, la experiencia supera cualquier atributo de producto.</p>
+        </div>
+      </div>
+
+      <div class="pregunta">
+        <p>La pregunta que el framework deja abierta para cada organización: <em>¿Estamos construyendo entornos donde las personas quieren estar — o entornos donde simplemente cumplen?</em></p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- fin contenido -->
+
+<!-- CIERRE -->
+<footer class="cierre">
+  <div class="cierre-inner">
+    <span class="cierre-label">Continuemos la conversación</span>
+    <h2>Si algo de esto conectó con lo que están pensando en Codelco</h2>
+    <p class="cierre-txt">Estos apuntes son un punto de partida, no una propuesta. Si alguno de estos conceptos resuena con los desafíos que están navegando hoy, estoy disponible para una conversación sin formalidades.</p>
+
+    <div class="contacto-bloque">
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <span class="c-label">Teléfono</span>
+          <span class="c-valor"><a href="tel:+56992827933">+56 9 9282 7933</a></span>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <span class="c-label">Correo</span>
+          <span class="c-valor"><a href="mailto:ignacio.gomuz@gmail.com">ignacio.gomuz@gmail.com</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="firma">
+      <div>
+        <p class="firma-nombre">Ignacio Gómez</p>
+        <p class="firma-rol">Business Partner — Proqualitas</p>
+      </div>
+      <span class="pq-badge">Proqualitas · +30 años</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
